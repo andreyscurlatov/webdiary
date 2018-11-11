@@ -1,0 +1,50 @@
+<html lang='ru'>
+<head>
+	<meta charset='utf-8'>
+	{% block title %}<title>Платформа для блоггеров</title>{% endblock %}
+
+
+  	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href={% static 'css/style.css' %}>
+</head>
+<body>
+	<div class='container'>
+
+			<div class='sidebar'>
+				{% block sidebar %}
+					<ul class='sidebar-nav'>
+						<li><a href='{% url 'index' %}'>Начальная страница</a></li>
+						<p></p>
+  						<li><a href='{% url 'blog-list' %}'>Все блоги</a></li>
+						<p></p>
+ 						<li><a href='{% url 'blogger-list' %}'>Все блоггеры</a></li>
+						<p></p>
+                        {% if user.is_authenticated %}
+                            <b>Пользователь: {{ user.first_name }} ({{ user.get_username }})</b>
+
+                            {% if perms.blog.add_blog %}
+                                    <hr>
+                                    <b><a href='{% url 'blog-create' %}'>Создать блог</a></b><br>
+                            {% elif perms.blog.add_comment %}
+                                    <hr>
+                                    <b><a href='{% url 'blogger-create' %}'>Стать блоггером</a></b><br>
+                            {% endif %}
+
+							<b><a href='{% url 'logout' %}?next=/accounts/logout/complete/'>Выход</a></b>
+						{% else %}
+							<p><a href='{% url 'login' %}?next=/accounts/login/complete/'>Вход или регистрация</a></p>
+						{% endif %}
+					</ul>
+				{% endblock %}
+			</div>
+			<div class='content-nav'>
+
+                <div class="top">{% block top %}{% endblock %}</div>
+                <div class="center">{% block content %}{% endblock %}</div>
+                <div class="bottom">{% block bottom %}{% endblock %}</div>
+
+            </div>
+
+	</div>
+</body>
+</html>

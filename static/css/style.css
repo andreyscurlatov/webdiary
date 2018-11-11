@@ -1,0 +1,31 @@
+.sidebar{
+	width: 20%;
+	height: 100%;
+	float: left;
+	background-color: bisque;
+	}
+.content-nav{
+	width: 80%;
+	height: 100%;
+	float: right;
+	background-color: antiquewhite;
+    box-sizing: border-box;
+    padding: 20px;
+	}
+.top{	
+	height: 10%;
+	float: top;
+	background-color: tomato;
+	}
+.center{
+	height: 80%;
+	}
+.bottom{
+	height: 10%;
+	float: bottom;
+	background-color: lightgreen;
+	}
+b{
+	color: blue;
+	}
+

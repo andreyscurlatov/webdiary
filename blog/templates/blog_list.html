@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<h1>Список блогов</h1>
+
+	{% if blog_list %}
+
+	<ul>
+		{% for blog in blog_list %}
+
+		<li><a href='{{ blog.get_absolute_url }}'>{{ blog.title }}</a> ({{ blog.date_of_public }}) - {{ blog.blogger.nik_name }}</li>
+
+		{% endfor %}
+	</ul>
+
+	{% else %}
+
+		<p>На платформе еще нет блогов</p>
+
+	{% endif %}
+
+{% endblock %}

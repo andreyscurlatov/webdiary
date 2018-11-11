@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<h1>Title: {{ blog.title }}</h1>
+
+	<p><strong>Author: </strong><a href='{{ blog.blogger.get_absolute_url }}'>{{ blog.blogger.nik_name }}</a></p>
+	<p><strong>Text: </strong>{{ blog.text }}</p>
+	<p><strong>Data: </strong>{{ blog.date_of_public }}</p>
+
+    <h3>Комментарии</h3>
+
+     <a href='{% url 'comment-create' pk=blog.pk %}'>Добавить комментарий</a>
+
+	{% for comment in comment_list %}
+
+	    <p>{{ comment.text }} {{ comment.date_of_public }} {{ user.username }}</p>
+
+	{% endfor %}
+
+{% endblock %}
